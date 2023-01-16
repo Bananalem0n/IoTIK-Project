@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>IoTIK</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{{url_for('static', filename='css/vendors/ti-icons/css/themify-icons.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/vendors/base/vendor.bundle.base.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{{url_for('static', filename='img/iconiotik2.png')}}" type="image/png">
+  <!-- icon bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
+      <div class="d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo me-5" href="#"><img src="{{url_for('static', filename='img/logoiotik1.png')}}"
+            height="55" width="100" class="me-2" alt="logo" /></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="ti-view-list"></span>
+        </button>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown"
+              style="color: white;">
+              <img src="{{url_for('static', filename='img/user.png')}}" alt="profile" class="rounded-circle" width="60"
+                height="60" />
+              Admin
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a href="{{('landingpage')}}" class="dropdown-item">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+          data-toggle="offcanvas">
+          <span class="ti-view-list"></span>
+        </button>
+      </div>
+    </nav>
+    <div class="container-fluid page-body-wrapper">
+      <!-- Sidebar -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{('index_admin')}}">
+              <i class="bi bi-table menu-icon" style="color: black;"></i>
+              <span class="menu-title" style="color: black;">User List</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- Main Content -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card rounded">
+                <div class="card-body rounded">
+                  <h4>User List</h4>
+                  <div class="row">
+                    <div class="card-body p-4">
+                      <table class="table" style="height: 100px; width: 1150px;">
+                        <thead>
+                          <tr align="center">
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>User Password</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Created At</th>
+                            <th>Last Update</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for item in kalimat %}
+                          <tr align="center">
+                            <td>{{ item[0] }}</td>
+                            <td>{{ item[1] }}</td>
+                            <td>{{ item[2] }}</td>
+                            <td>{{ item[3] }}</td>
+                            <td>{{ item[4] }}</td>
+                            <td>{{ item[5] }}</td>
+                            <td>{{ item[6] }}</td>
+                            <td>
+                              <button type="button" class="btn btn-default shadow-sm"
+                                style="background-color: rgb(58, 117, 255); color: white;"><a
+                                  href="{{url_for('update_user', id=item[0])}}" style="color: white;"><i
+                                    class="bi bi-pencil-square"></i> Edit</a></button>
+                              <button type="button" class="btn btn-default shadow-md"
+                                style="background-color:crimson; color: white;"><a
+                                  href="{{url_for('delete_user', id=item[0])}}" style="color: white;"><i
+                                    class="bi bi-trash3"></i> Delete</a></button>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                      <div class="float-right align-self-right align-items-right">
+                        <button type="submit" class="btn btn-bright mt-4"
+                          style="background-color: rgb(58, 117, 255);"><a href="{{('adduser')}}"
+                            style="color: white;"><i class="bi bi-person-plus"></i> Add
+                            User</a></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Footer -->
+        <footer class="footer text-opacity-65"
+          style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: rgb(235, 235, 235);">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-6">
+              <p class="">Copyrights - IoTIK 2023</p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- plugins:js -->
+  <script src="{{url_for('static', filename='css/vendors/base/vendor.bundle.base.js')}}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="{{url_for('static', filename='css/vendors/chart.js/Chart.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/jquery.cookie.js')}}" type="text/javascript"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{{url_for('static', filename='js/off-canvas.js')}}"></script>
+  <script src="{{url_for('static', filename='js/hoverable-collapse.js')}}"></script>
+  <script src="{{url_for('static', filename='js/template.js')}}"></script>
+  <script src="{{url_for('static', filename='js/todolist.js')}}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{{url_for('static', filename='js/dashboard.js')}}"></script>
+  <!-- End custom js for this page-->
+</body>
+</html>
