@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="Bootstrap, Landing page, Template, Business, Service">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Grayrids">
+    <title>IoTIK</title>
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="{{url_for('static', filename='img/iconiotik2.png')}}" type="image/png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/animate.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/LineIcons.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/owl.theme.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/nivo-lightbox.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/responsive.css')}}">
+
+  </head>
+  
+  <body>
+    <!-- Header Section Start -->
+    <header id="home" class="hero-area">    
+      <div class="overlay">
+        <span></span>
+        <span></span>
+      </div>
+      <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
+        <div class="container">
+          <a href="{{url_for('landingpage')}}" class="navbar-brand"><img src="{{url_for('static', filename='img/logoiotik1.png')}}" alt="image" height="68" width="130"></a>       
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="lni-menu"></i>
+          </button>
+        </div>
+      </nav>  
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="section">
+      <!-- Container Starts -->
+      <div class="container">
+        <!-- Start Row -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="contact-text section-header text-center">  
+              <div>   
+                <h2 class="section-title" style="color: white;">Login</h2>
+              </div> 
+            </div>
+          </div>
+
+        </div>
+        <!-- End Row -->
+        <!-- Start Row -->
+        <div class="row justify-content-end mb-3">
+        <div class="col-md-6">
+          <form method="post" id="login">
+            <div class="row">
+              <div class="col-lg-11">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Username" required data-error="Please enter your name">
+                  <div class="help-block with-errors"></div>
+                </div>                                 
+              </div>
+              <div class="col-lg-11">
+                <div class="form-group">
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" required data-error="Please enter your Email">
+                  <div class="help-block with-errors"></div>
+                </div>                                 
+              </div>
+            </div>
+            <button type="submit" class="btn btn-dark" style="background-color:aqua; color: black;">Login</button>
+            <button type="button" class="btn btn-dark" style="background-color: white;"><a href="{{url_for('regist')}}" style="color: black;">Registration</a></button>            
+          </form>
+          </div>
+          <!-- End Col -->
+          <!-- Start Col -->
+          <div class="col-lg-1">
+            
+          </div>
+          <!-- End Col -->
+          <!-- Start Col -->
+          <div class="col-lg-4 col-md-12">
+            <div class="contact-img">
+              <img src="{{url_for('static', filename='img/intro.png')}}" class="img-fluid" alt="">
+            </div>
+          </div>
+          <!-- End Col -->
+          <!-- Start Col -->
+          <div class="col-lg-1">
+          </div>
+          <!-- End Col -->
+
+        </div>
+        <!-- End Row -->
+      </div>
+    </section>
+    <!-- Contact Us Section End -->
+
+    <!-- Footer Section Start -->
+    <footer>
+      <!-- Footer Area Start -->
+      <section id="footer-Content">
+        <div class="container">
+          <!-- Start Row -->
+          <div class="row">
+
+          <!-- Start Col -->
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+              <div class="footer-logo">
+               <img src="{{url_for('static', filename='img/logoiotik1.png')}}" alt="" height="180" width="250">
+              </div>
+            </div>
+            <!-- End Col -->
+              <!-- Start Col -->
+              <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+                <div class="widget">
+                  <h3 class="block-title">Company</h3>
+                  <ul class="menu">
+                    <li><a href="#">- About Us</a></li>
+                    <li><a href="#">- Team</a></li>
+                    <li><a href="#">- Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+               <!-- End Col -->
+                <!-- Start Col -->
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+                <div class="widget">
+                  <h3 class="block-title">Product</h3>
+                  <ul class="menu">
+                    <li><a href="#">- Customer Service</a></li>
+                  </ul>
+                </div>
+              </div>
+             <!-- End Col -->
+          </div>
+          <!-- End Row -->
+        </div>
+        <!-- Copyright Start  -->
+        <div class="copyright">
+          <div class="container">
+            <!-- Star Row -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="site-info text-center">
+                  <p style="color: aqua;">Created by <a href="#">IoTIK Company</a></p>
+                </div>              
+                
+              </div>
+              <!-- End Col -->
+            </div>
+            <!-- End Row -->
+          </div>
+        </div>
+      <!-- Copyright End -->
+      </section>
+      <!-- Footer area End -->
+      
+    </footer>
+    <!-- Footer Section End --> 
+
+
+    <!-- Go To Top Link -->
+    <a href="#" class="back-to-top">
+      <i class="lni-chevron-up"></i>
+    </a> 
+
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="loader" id="loader-1"></div>
+    </div>
+    <!-- End Preloader -->
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="{{url_for('static', filename='js/jquery-min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/owl.carousel.js')}}"></script>      
+    <script src="{{url_for('static', filename='js/jquery.nav.js')}}"></script>    
+    <script src="{{url_for('static', filename='js/scrolling-nav.js')}}"></script>    
+    <script src="{{url_for('static', filename='js/jquery.easing.min.js')}}"></script>     
+    <script src="{{url_for('static', filename='js/nivo-lightbox.js')}}"></script>     
+    <script src="{{url_for('static', filename='js/jquery.magnific-popup.min.js')}}"></script>     
+    <script src="{{url_for('static', filename='js/form-validator.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/contact-form-script.js')}}"></script>   
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+  </body>
+</html>
