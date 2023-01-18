@@ -9,9 +9,7 @@
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{url_for('static', filename='css/vendors/ti-icons/css/themify-icons.css')}}">
   <link rel="stylesheet" href="{{url_for('static', filename='css/vendors/base/vendor.bundle.base.css')}}">
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -22,13 +20,15 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
 
     <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
       <div class="d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo me-5" href="#"><img src="{{url_for('static', filename='img/logoiotik1.png')}}"height="55" width="100" class="me-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo me-5" href="#"><img src="{{url_for('static', filename='img/logoiotik1.png')}}"
+            height="55" width="100" class="me-2" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -36,9 +36,11 @@
         </button>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown" style="color: white;">
-              <img src="{{url_for('static', filename='img/user.png')}}" alt="profile" class="rounded-circle" width="60" height="60"/>
-              {{user}}
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown"
+              style="color: white;">
+              <img src="{{url_for('static', filename='img/user.png')}}" alt="profile" class="rounded-circle" width="60"
+                height="60" />
+                &nbsp;User
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a href="{{('landingpage')}}" class="dropdown-item">
@@ -48,7 +50,8 @@
             </div>
           </li>
         </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+          data-toggle="offcanvas">
           <span class="ti-view-list"></span>
         </button>
       </div>
@@ -89,11 +92,7 @@
         <div class="content-wrapper">
           <div class="row">
             <div class="col-md-12 grid-margin">
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <h4 class="font-weight-bold mb-0 mt-3 text-muted">Dashboard</h4>
-                </div>
-              </div>
+              <h4 class="font-weight-bold mb-0 mt-3 text-muted">Dashboard</h4>
             </div>
           </div>
           <div class="row">
@@ -104,60 +103,101 @@
                   <div class="table-responsive">
                     <div class="card-body p-4">
                       <div class="row">
-                        <div class="col-xl-4 col-md-6 mb-xl-0 mb-4 animate__animated animate__fadeIn">
+                        <div class="col-xl-4 col-md-6 mb-xl-0 mb-4 animate_animated animate_fadeIn">
                           <div class="card card-header">
                             <p class="px-2 pb-0 mb-1 pt-2 text-end text-muted">DoorLock</p>
                           </div>
                           <div class="card card-blog card-plain">
                             <div class="position-relative">
                               <a class="d-block shadow-md border-radius-xl">
-                                <img src="{{url_for('static', filename='img/home-decor-1.jpg')}}" alt="img-blur-shadow" class="img-fluid rounded-bottom">
+                                <img src="{{url_for('static', filename='img/doorlock.png')}}" alt="img-blur-shadow"
+                                  class="img-fluid rounded-bottom">
                               </a>
                             </div>
                           </div>
                         </div>
-                        <div class="col-xl-4 col-md-6 mb-xl-0 mb-4 animate__animated animate__fadeIn">
-                          <div class="card card-header rounded-top border-bottom-0 ">
-                            <p class="px-2 pb-0 mb-1 pt-2 text-end text-muted">Smoke Detector</p>
-                          </div>
-                          <div class="card card-blog card-plain ">
-                            <div class="position-relative">
-                              <a class="d-block">
-                                <img src="{{url_for('static', filename='img/home-decor-1.jpg')}}" alt="img-blur-shadow" class="img-fluid rounded-bottom ">
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xl-4 col-md-6 mb-xl-0 mb-4 animate__animated animate__fadeIn">
-                          <div class="card card-header rounded-top border-bottom-0">
-                            <p class="px-2 pb-0 mb-1 pt-2 text-end text-muted">Rain Detector</p>
-                          </div>
-                          <div class="card card-blog card-plain">
-                            <div class="position-relative">
-                              <a class="d-block">
-                                <img src="{{url_for('static', filename='img/home-decor-1.jpg')}}" alt="img-blur-shadow" class="img-fluid rounded-bottom">
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        
                       </div>
                     </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card rounded">
+                <div class="card-body">
+                  <p class="card-title mb-0">Fire Detector</p>
+                  <div class="table-responsive">
+                    <div class="card-body p-4">
+                      <div class="row">
+                        <div class="col-xl-4 col-md-6 mb-xl-0 mb-4 animate_animated animate_fadeIn">
+                          <div class="card card-header rounded-top border-bottom-0 ">
+                            <p class="px-2 pb-0 mb-1 pt-2 text-end text-muted">Fire Detector</p>
+                          </div>
+                          <div class="card card-blog card-plain ">
+                            <div class="position-relative">
+                              <a class="d-block">
+                                <img src="{{url_for('static', filename='img/sensor_kebakaran.png')}}" alt="img-blur-shadow"
+                                  class="img-fluid rounded-bottom ">
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-12 grid-margin stretch-card">
+                    <div class="card rounded">
+                      <div class="card-body">
+                        <p class="card-title mb-0">Rain Detector</p>
+                        <div class="table-responsive">
+                          <div class="card-body p-4">
+                            <div class="row">
+                              <div class="col-xl-4 col-md-6 mb-xl-0 mb-4 animate_animated animate_fadeIn">
+                                <div class="card card-header rounded-top border-bottom-0">
+                                  <p class="px-2 pb-0 mb-1 pt-2 text-end text-muted">Rain Detector</p>
+                                </div>
+                                <div class="card card-blog card-plain">
+                                  <div class="position-relative">
+                                    <a class="d-block">
+                                      <img src="{{url_for('static', filename='img/sensor_hujan.png')}}" style="width: 500cm;" alt="img-blur-shadow"
+                                        class="img-fluid rounded-bottom">
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+          </div>
+
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-        <footer class="footer text-opacity-65" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: rgb(235, 235, 235);">
-            <div class="row">
-                <div class="col-12 col-md-6 col-lg-6">
-                  <br>
-                    <p class="">Copyrights - IoTIK 2023</p>
-                </div>
+        <footer class="footer text-opacity-65"
+          style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: rgb(235, 235, 235);">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-6">
+              <p class="">Copyrights - IoTIK 2023</p>
             </div>
+          </div>
         </footer>
         <!-- partial -->
       </div>
@@ -186,4 +226,3 @@
 </body>
 
 </html>
-
