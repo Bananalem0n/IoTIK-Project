@@ -8,6 +8,8 @@ from firebase import Firebase
 import json
 from collections import OrderedDict
 from firebase_admin import db
+import os
+from werkzeug.utils import secure_filename
 
 application = Flask(__name__)
 application.secret_key = "abc"
@@ -28,9 +30,12 @@ db = firebase.database()
 user = auth.sign_in_with_email_and_password("caturraya2003@gmail.com","nasrulanakbaik")
 refreshToken = auth.refresh(user['refreshToken'])
 
-data = db.child('UsersData').child(user['localId']).child('project').child('20').get().val()
+UPLOAD_FOLDER = '/static/images/uploads'
+ALLOWED_EXTENSION = {'png', 'jpeg', 'jpg', 'pdf'}
+application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSION
 # sql boss
 def getMysqlConnection():
     return  mysql.connector.connect(user='root', host='localhost', port='3306', password='', database='iotik')
@@ -50,8 +55,12 @@ def regist():
         notlpn = request.form['notlpn']		
         password = request.form['password']	
         confirmpassword = request.form['confirmpassword']
-
+        file = request.files('file')
     	# cek password confirmation
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(application.config['UPLOAD_FOLDER'],  filename))            
+            return  'file ' + filename +' di simpan' + ' <a href="/register">kembali</a>'
         if password == confirmpassword:
             db = getMysqlConnection()
             try:
@@ -59,7 +68,7 @@ def regist():
                 cur.execute("INSERT INTO `user` (`uname`, `upass`, `email`, `no_tlpn`) VALUES ('"+user+"', '"+password+"', '"+email+"', '"+notlpn+"');")
                 db.commit()
                 cur.close()
-            except Exception as e:
+            except Exception as e:  
                 print("Error in SQL:\n",e)
             finally:
                 db.close()
@@ -125,37 +134,43 @@ def login():
 @application.route('/firedetector')
 def firedetector():
     
-    temp = data['temperature']
-    humid = data['humidity']
-    rain = data['rain-sensor']
+    data = db.child('UsersData').child(user['localId']).child('Flame & Smoke').child('realtime').get().val()
+    
+    AQI = data['Air Quality']
+    flame = data['Flame Presence']
+    timestamp = data['timestamp']
 
-    if rain == "0":
-        rain = 'Tidak hujan'
+    if flame == 0:
+        flame = 'Kebakaran!!!'
     else:
-        rain = 'Hujan'
+        flame = 'Tidak terdeteksi asap/api'
 
-    return render_template('firedetector.html',kalimat = [temp,humid,rain])
+    return render_template('firedetector.html',kalimat = [AQI,flame,timestamp])
 
 @application.route('/raindetector')
 def raindetector():
     
+    data = db.child('UsersData').child(user['localId']).child('Rain Detector').child('realtime').get().val()
+
+    
     temp = data['temperature']
     humid = data['humidity']
     rain = data['rain-sensor']
+    timestamp = ['timestamp']
 
     if rain == "0":
         rain = 'Tidak hujan'
     else:
         rain = 'Hujan'
 
-    return render_template('raindetector.html',kalimat = [temp,humid,rain])
+    return render_template('raindetector.html',kalimat = [temp,humid,rain,timestamp])
 
 @application.route('/smartdoorlock')
 def smartdoorlock():
     
-    # temp = data['temperature']
-    # humid = data['humidity']
-    door = data['rain-sensor']
+    data = db.child('UsersData').child(user['localId']).child('DoorLock').child('realtime').get().val()
+
+    door = data['door-status']
 
     if door == "0":
         door = 'Tidak terkunci'
@@ -164,7 +179,7 @@ def smartdoorlock():
 
     return render_template('smartdoorlock.html',kalimat = [door])
 
-@application.route('/indexadmin')
+@application.route('/index_admin')
 def indexadmin():
     db = getMysqlConnection()
     try:
@@ -179,25 +194,23 @@ def indexadmin():
     return render_template('index_admin.html',kalimat=output_json)
 
 #################
-#  NAMBAH USER  #
+#  TAMBAH USER  #
 #################
 @application.route('/adduser', methods=['GET','POST'])
 def adduser():
     print(request.method)
     if request.method == 'GET':
         return render_template('adduser.html')
-    else: 
-        request.method == 'POST'
-        id_user = request.form['id_user']
+    elif request.method == 'POST' :
+        id = request.form['id']
         uname = request.form['uname']
         upass = request.form['upass']   
         email = request.form['email']
-        no_telp = request.form['no_telp']
+        no_tlpn = request.form['no_telp']
         db = getMysqlConnection()
         try:
             cur = db.cursor()
-            sukses = "Data Berhasil Ditambahkan"
-            sqlstr = "INSERT INTO `user` (`id_user`, `uname`, `upass`, `email`, `no_telp`) VALUES ('"+id_user+"','"+uname+"','"+upass+"','"+email+"','"+no_telp+"')"
+            sqlstr = "INSERT INTO `user` (`id`, `uname`, `upass`, `email`, `no_tlpn`) VALUES ('"+id+"', '"+uname+"','"+upass+"','"+email+"','"+no_tlpn+"');"
             print(sqlstr)
             cur.execute(sqlstr)
             db.commit()
@@ -206,7 +219,7 @@ def adduser():
             print('Error in SQL:\n', e)
         finally:
             db.close()
-            return redirect(url_for('indexadmin')) 
+            return redirect(url_for('index_admin')) 
 
 #################
 #   EDIT USER   #
@@ -229,15 +242,15 @@ def update_user(id):
             db.close()
         return render_template('edituser.html', kalimat=output)
     elif request.method == 'POST':
-        id_user = request.form['id_user']
+        id_user = request.form['id']
         uname = request.form['uname']
         upass = request.form['upass']   
         email = request.form['email']
-        no_telp = request.form['no_telp']
+        no_tlpn = request.form['no_tlpn']
         db = getMysqlConnection()
         try:
             cur = db.cursor()
-            cur.execute ("UPDATE `user` SET `id_user` = %s, `uname` = %s, `upass` = %s, `email` = %s, `no_telp` = %s WHERE `user`.`id_user` = %s",(id_user,uname,upass,email,no_telp,id,))
+            cur.execute ("UPDATE `user` SET `id` = %s, `uname` = %s, `upass` = %s, `email` = %s, `no_tlpn` = %s WHERE `user`.`id` = %s",(id_user,uname,upass,email,no_tlpn,id_user,))
             output = cur.fetchall()
             print(output)
             db.commit()
@@ -247,20 +260,24 @@ def update_user(id):
         finally:
             db.close()
         return redirect(url_for('index_admin'))
-
     return render_template('index_admin.html')
 
-@application.route('/delete_user/<int:id>', methods=['GET'])
+#################
+#  DELETE USER  #
+#################
+@application.route('/delete_user/<int:id>', methods=['GET', 'POST'])
 def delete_user(id):
     db = getMysqlConnection()
-    if request.method == 'GET':
+    try:
         cursor = db.cursor()
-        cursor.execute("DELETE FROM user WHERE id=%s", (id, ))
+        cursor.execute("DELETE FROM `user` WHERE `id`=%s", (id,))
         db.commit()
         cursor.close()
-
-        return redirect(url_for('index_admin'))
-    return render_template('index_admin.html')
+    except Exception as e:
+        print("Error in SQL:\n", e)
+    finally:
+        db.close()
+    return redirect(url_for('index_admin'))
 
 
 @application.route('/index')
